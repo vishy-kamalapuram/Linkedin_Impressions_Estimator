@@ -38,6 +38,3 @@ Some things to consider with this is that certain types of posts get wildly diff
 Additionally, the types of comments could matter, as someone just saying "good job" doesn't provide room for discussion, while someone asking about methodology could spark a conversation which could generate more views.
 
 Impressions can also differ a significant amount depending on the number of followers a poster has, but again, this is a level of complexity that stretches outside of the bounds of this project since we are also considering the amount of time it takes to collect this information. 
-
-
-test?
