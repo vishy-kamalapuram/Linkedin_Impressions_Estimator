@@ -1,5 +1,5 @@
 # Introduction
-After multiple attempts of building this project through the use of AI tools, and falling into the slippery downfall of leaning completely on those tools to complete the project, and eventually having no idea what is happening, I will take a more hands on approach with this attempt, and build out as much of it as I can, using those tools only for slight assistance with syntax and debugging. 
+After multiple unfinished attempts of trying to build this project, I am going to take a much more steady approach and make sure to understand all that I am doing to complete this project. It will probably take a bit longer compared to using AI for the entire thing, but the benefit is that I will hopefully better understand how to build this program in the future, and will be more capable. That being said, I am not going to fully avoid AI, but rather use it for small syntax bits and debugging errors to still keep the work moving, but at least make it mine. 
 
 # Description
 The primary goal of this project is pretty straightforward. We want to be able to estimate the number of impressions a given linkedin post gets. 
@@ -38,3 +38,9 @@ Some things to consider with this is that certain types of posts get wildly diff
 Additionally, the types of comments could matter, as someone just saying "good job" doesn't provide room for discussion, while someone asking about methodology could spark a conversation which could generate more views.
 
 Impressions can also differ a significant amount depending on the number of followers a poster has, but again, this is a level of complexity that stretches outside of the bounds of this project since we are also considering the amount of time it takes to collect this information. 
+
+
+# Approach
+To build this project, I will first work on training models to be able to predict the number of impressions a post gets. I found that using XGBoost works well for being able to predict the number of impressions that a post gets. However, since it is a decision tree algorithm, it appeared to struggle at posts with high numbers of reactions (over 140) as the training data did not extend to that range. 
+
+To allow for slightly more accurate predictions, we will be using a polynomial 
