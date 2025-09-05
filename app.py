@@ -24,6 +24,7 @@ def load_model():
         2: Failed to load model (invalid model or corrupted)
     """
     """If the user does not provide a model, we will just load the existing model"""
+    global model
 
     # model file could not be found (should never happen?)
     if not Path('models/xgbmodel.pkl').exists():
@@ -48,7 +49,7 @@ def predictSingle():
         data = request.get_json()
 
         # if data is null, return error
-        if not data():
+        if not data:
             return jsonify({'error': 'No Data provided'})
         
         # Check for missing field values
@@ -90,7 +91,7 @@ def predictSingle():
 
         # return prediction
         return jsonify({
-            'prediction': round(prediction, 0),
+            'prediction': int(round(float(prediction), 0)),
             'inputs': {
                 'reactions': reactions,
                 'comments': comments, 
@@ -104,3 +105,5 @@ def predictSingle():
             
 
 
+if __name__ == "__main__":
+    app.run(debug=True, host='0.0.0.0', port=5002)
