@@ -6,11 +6,9 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.metrics import mean_squared_error, r2_score
+import joblib
 
 
-data = pd.read_excel('Data.xlsx')
-X = data[['REACTIONS', 'COMMENTS', 'REPOSTS']]
-y = data['IMPRESSIONS']
 
 
 
@@ -32,24 +30,12 @@ def train_xgb(X, y):
 
     return model
 
-def train_poly(X, y):
-    # Sets max exponent to 2
-    poly = PolynomialFeatures(degree=2)
 
-    # scales the data
-    X_poly = poly.fit_transform(X)
+if __name__ == "__main__":
+    data = pd.read_excel('data/Data.xlsx')
+    X = data[['REACTIONS', 'COMMENTS', 'REPOSTS']]
+    y = data['IMPRESSIONS']
 
-    # gets our test split of data rather than all of it 
-    X_train, X_test, y_train, y_test = train_test_split(X_poly, y, test_size=0.2, random_state=42)
-    
-    model = LinearRegression()
-    model.fit(X_train, y_train)
+    model = train_xgb(X, y)
 
-    y_pred = model.predict(X_test)
-    mse = mean_squared_error(y_test, y_pred)
-    r2 = r2_score(y_test, y_pred)
-    print(f"Mean Squared Error: {mse}")
-    print(f"R-squared: {r2}")
-
-
-train_poly(X, y)
+    joblib.dump(model, 'models/xgbmodel.pkl')
